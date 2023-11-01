@@ -1,0 +1,36 @@
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  labels:
+    app.kubernetes.io/part-of: sso-example-app-tap
+    apps.tanzu.vmware.com/workload-type: web
+    apps.tanzu.vmware.com/auto-configure-actuators: "true"
+  name: sso-example-app-tap
+  namespace: jeremy
+spec:
+  params:
+  - name: annotations
+    value:
+      autoscaling.knative.dev/minScale: "1"
+  build:
+    env:
+      - name: BP_JVM_VERSION
+        value: "17"
+  env:
+  - name: JAVA_TOOL_OPTIONS
+    value: -Dorg.springframework.cloud.bindings.boot.enable=true
+  - name: SPRING_PROFILES_ACTIVE
+    value: cloud
+
+  serviceClaims:
+  # this name has to match the client registration you want to use.
+  - name: sso-example-app-tap-client-registration
+    ref:
+      apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+      kind: ResourceClaim
+      name: sso-example-app-tap-resource-claim
+  source:
+    git:
+      url: https://github.com/x95castle1/sso-example-app-tap.git
+      ref:
+        branch: main

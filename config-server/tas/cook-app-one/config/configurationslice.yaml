@@ -1,0 +1,15 @@
+apiVersion: config.apps.tanzu.vmware.com/v1alpha4
+kind: ConfigurationSlice
+metadata:
+  name: cook-app-one-config
+  namespace: jeremy
+spec:
+  interval: 30s
+  configurationSource: cook-config-source
+  content:
+  - cook-app-one/prime
+  - cook-app-one/feed-processing
+  - cook-app-one/azure
+  - cook-app-one/logging
+  - cook-app-one/monitoring
+  - cook-app-one/rabbit-mq

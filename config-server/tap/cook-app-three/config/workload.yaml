@@ -1,0 +1,33 @@
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  name: cook-app-three
+  namespace: jeremy
+  labels:
+    apps.tanzu.vmware.com/workload-type: web
+    app.kubernetes.io/part-of: cook-app-three
+spec:
+  params:
+    - name: annotations
+      value:
+        autoscaling.knative.dev/minScale: "1"
+  serviceClaims:
+    - name: spring-properties
+      ref:
+        apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+        kind: ResourceClaim
+        name: cook-app-three-config-claim
+  build:
+    env:
+      - name: BP_JVM_VERSION
+        value: "17"
+  env:
+    - name: SPRING_CONFIG_IMPORT
+      value: "optional:configtree:${SERVICE_BINDING_ROOT}/spring-properties/"
+    - name: SPRING_CLOUD_CONFIG_ENABLED
+      value: "false"
+  source:
+    git:
+      url: ssh://git@github.com/aullom1/config-client
+      ref:
+        branch: main

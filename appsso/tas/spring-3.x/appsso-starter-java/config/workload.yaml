@@ -1,0 +1,24 @@
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  labels:
+    app.kubernetes.io/part-of: appsso-starter-java
+    apps.tanzu.vmware.com/workload-type: web
+    apps.tanzu.vmware.com/auto-configure-actuators: "true"
+  name: appsso-starter-java
+spec:
+  build:
+    env:
+      - name: BP_JVM_VERSION
+        value: "17"
+  serviceClaims:
+    - name: appsso-starter-java
+      ref:
+        apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+        kind: ResourceClaim
+        name: appsso-starter-java
+  source:
+    git:
+      url: https://github.com/x95castle1/appsso-starter-java.git
+      ref:
+        branch: main

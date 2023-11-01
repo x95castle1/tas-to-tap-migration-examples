@@ -1,0 +1,10 @@
+applications:
+  - name: cf-app-sso-auth-zero
+    path: ./build/libs/mvc-login-0.0.1-SNAPSHOT.jar
+    services:
+      - auth-zero
+    buildpacks:
+      - java_buildpack_offline
+    env:
+      JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 17.+ } }'
+

@@ -1,0 +1,24 @@
+apiVersion: sso.apps.tanzu.vmware.com/v1alpha1
+kind: ClientRegistration
+metadata:
+  name: sso-example-app-tap-client-registration
+  namespace: jeremy
+spec:
+  authServerSelector:
+    matchLabels:
+      env: production
+      name: auth0-authserver
+  authorizationGrantTypes:
+    - authorization_code
+    - client_credentials
+    - refresh_token
+  clientAuthenticationMethod: client_secret_basic
+  redirectURIs:
+    - https://sso-example-app-tap.jeremy.run.prep.tapsme.org/login/oauth2/code/sso-example-app-tap-client-registration
+    - http://sso-example-app-tap.jeremy.run.prep.tapsme.org/login/oauth2/code/sso-example-app-tap-client-registration
+  scopes:
+    - name: openid
+    - name: email
+    - name: profile
+    - name: "roles"
+    - name: "message.read"

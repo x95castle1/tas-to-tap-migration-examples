@@ -1,0 +1,28 @@
+apiVersion: carto.run/v1alpha1
+kind: Deliverable
+metadata:
+  name: sso-example-app-tap
+  namespace: jeremy
+  labels:
+    app.kubernetes.io/part-of: sso-example-app-tap
+    apps.tanzu.vmware.com/auto-configure-actuators: "true"
+    apps.tanzu.vmware.com/workload-type: web
+    app.kubernetes.io/component: deliverable
+    app.tanzu.vmware.com/deliverable-type: web
+    carto.run/cluster-template-name: external-deliverable-template
+    carto.run/resource-name: deliverable
+    carto.run/supply-chain-name: source-to-url
+    carto.run/template-kind: ClusterTemplate
+    carto.run/template-lifecycle: mutable
+    carto.run/workload-name: sso-example-app-tap
+    carto.run/workload-namespace: jeremy
+spec:
+  params:
+  - name: gitops_ssh_secret
+    value: git-auth
+  source:
+    git:
+      url: ssh://git@github.com/Mpluya/tap-workload-config-repo.git
+      ref:
+        branch: main
+    subPath: config/jeremy/sso-example-app-tap

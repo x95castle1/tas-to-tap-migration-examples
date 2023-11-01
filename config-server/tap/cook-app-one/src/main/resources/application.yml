@@ -1,0 +1,20 @@
+---
+spring:
+  application:
+    name: cook
+  cloud:
+    config:
+        enabled: false 
+
+encrypt:
+  keyStore:
+    location: classpath:/server.jks
+    password: letmein
+    alias: mytestkey
+    secret: changeme
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

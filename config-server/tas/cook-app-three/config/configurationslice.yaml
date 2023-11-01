@@ -1,0 +1,15 @@
+apiVersion: config.apps.tanzu.vmware.com/v1alpha4
+kind: ConfigurationSlice
+metadata:
+  name: cook-app-three-config
+  namespace: jeremy
+spec:
+  interval: 30s
+  configurationSource: cook-config-source
+  content:
+    - cook-app-three/ocho
+    - cook-app-three/save-the-world
+    - cook-app-three/monitoring
+    - cook-app-three/security
+    - cook-app-three/logging
+    - cook-app-three/azure

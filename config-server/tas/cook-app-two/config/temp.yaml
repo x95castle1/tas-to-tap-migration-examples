@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: acs-secret
+  namespace: jeremy
+stringData:
+  ssh.privateKey: -----BEGIN EXAMPLE RSA PRIVATE KEY-----\nMIIJKQIB...
+  ssh.privateKeyPassphrase: s3cr3tP4$$phr4$3
+  ssh.hostKey: thisISaTEST
+  ssh.hostKeyAlgorithm: ssh-rsa
+
+
+
+
+
+

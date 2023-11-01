@@ -1,0 +1,16 @@
+apiVersion: config.apps.tanzu.vmware.com/v1alpha4
+kind: ConfigurationSlice
+metadata:
+  name: cook-app-two-config
+  namespace: jeremy
+spec:
+  interval: 30s
+  configurationSource: cook-config-source
+  content:
+    - cook-app-two/ocho
+    - cook-app-two/save-the-world
+    - cook-app-two/monitoring
+    - cook-app-two/security
+    - cook-app-two/logging
+    - cook-app-two/azure
+    - cook-app-two/rabbit-mq

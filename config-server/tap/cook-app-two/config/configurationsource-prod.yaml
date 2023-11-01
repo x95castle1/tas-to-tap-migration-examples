@@ -1,0 +1,15 @@
+apiVersion: config.apps.tanzu.vmware.com/v1alpha4
+kind: ConfigurationSource
+metadata:
+  name: cook-config-source
+  namespace: jeremy
+spec:
+  backends:
+    - type: git
+      uri: ssh://git@bitbucket.penske.com:7999/tankp/app-k8s-resources.git
+      secretRef:
+        name: acs-secret
+        namespace: jeremy
+      searchPaths:
+      - configs/{application}
+      - configs/shared/prod

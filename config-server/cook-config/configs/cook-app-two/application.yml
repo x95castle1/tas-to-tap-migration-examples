@@ -1,0 +1,2 @@
+spring.profiles.include: azure,logging,monitoring,ocho,save-the-world
+name: cook-app-two
